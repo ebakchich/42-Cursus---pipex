@@ -23,16 +23,21 @@ char    *ft_gtpath(char **envp, char *cmd)
         i++;
     envp[i] += 5;
     path = ft_split(envp[i], ':');
-    i = 0; 
-    while (path[i])
+    i = 0;
+    if (cmd[0] != '/')
     {
-        s = ft_strjoin(path[i], "/");
-        s = ft_strjoin(s, cmd);
-        if (access(s, F_OK) == 0)
-            return (s);
-        i++;
+        while (path[i])
+        {
+            s = ft_strjoin(path[i], "/");
+            s = ft_strjoin(s, cmd);
+            if (access(s, F_OK) == 0)
+                return (s);
+            i++;
+        }
+        free(s);
     }
-    free(s);
+    if (access(cmd, F_OK) == 0)
+        return (cmd);
     error(3);
     return (0);
 }
