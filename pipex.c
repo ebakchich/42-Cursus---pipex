@@ -24,13 +24,9 @@ void    ft_execve(int p[2], char **argv, char **envp)
     dup2(fd, 0);
     close(fd);
     dup2(p[1], 1);
-    printf("u\n");
     close(p[1]);
     cmd = ft_split(argv[2], ' ');
-    // if (ft_strchr(cmd[0], '/') == NULL)
     execve(ft_gtpath(envp, cmd[0]), cmd, envp);
-//     else
-//         execve(cmd[0], cmd, envp);
 }
 
 void    ft_execvetwo(int *p, char **argv, char **envp)
@@ -45,10 +41,7 @@ void    ft_execvetwo(int *p, char **argv, char **envp)
     dup2(fd, 1);
     close(fd);
     cmd = ft_split(argv[3], ' ');
-    // if (ft_strchr(cmd[0], '/') == NULL)
     execve(ft_gtpath(envp, cmd[0]), cmd, envp);
-    // else
-    //     execve(cmd[0], cmd, envp);
 }
 
 int main(int argc, char **argv, char **envp)
