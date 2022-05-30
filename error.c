@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebakchic <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ebakchic <ebakchic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 22:52:51 by ebakchic          #+#    #+#             */
-/*   Updated: 2022/05/22 22:52:54 by ebakchic         ###   ########.fr       */
+/*   Updated: 2022/05/30 14:55:05 by ebakchic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,14 @@ void    error(int i)
         write(2, "Error: No such file or directory\n", 33);
         exit(EXIT_FAILURE);
     }
-    else
+    else if (i == 5)
     {
         write(2, "Error: permission denied\n", 25);
+        exit(EXIT_FAILURE);
+    }
+    else
+    {
+        write(2, "Error: PATH not found\n", 22);
         exit(EXIT_FAILURE);
     }
 }

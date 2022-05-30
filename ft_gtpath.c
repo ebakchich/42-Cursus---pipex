@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_gtpath.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebakchic <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ebakchic <ebakchic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 14:05:04 by ebakchic          #+#    #+#             */
-/*   Updated: 2022/05/22 14:05:07 by ebakchic         ###   ########.fr       */
+/*   Updated: 2022/05/30 15:34:34 by ebakchic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ char    *ft_gtpath(char **envp, char *cmd)
     char    *s;
 
     i = 0;
-    while (ft_memcmp(envp[i], "PATH", 4))
+    while (envp[i] && ft_memcmp(envp[i], "PATH", 4))
         i++;
+    if (!envp[i])
+        error(6);
     envp[i] += 5;
     path = ft_split(envp[i], ':');
     i = 0;
@@ -38,6 +40,8 @@ char    *ft_gtpath(char **envp, char *cmd)
     }
     if (access(cmd, F_OK) == 0)
         return (cmd);
+    if (cmd[0] == '/')
+        error(4);
     error(3);
     return (0);
 }
